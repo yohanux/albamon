@@ -212,6 +212,35 @@ class CartManager {
             this.isBottomSheetOpen = false;
             this.cartItemsContainer.classList.remove('expanded');
             this.updateDisplay();
+            
+            // 탭 닫기 시도
+            this.closeCurrentTab();
+        }
+    }
+    
+    // 현재 탭 닫기 시도
+    closeCurrentTab() {
+        try {
+            // 브라우저가 허용하는 경우 탭 닫기
+            if (window.opener || document.referrer) {
+                // 팝업이나 다른 페이지에서 열린 경우
+                window.close();
+            } else {
+                // 직접 열린 탭의 경우 (브라우저 보안상 제한될 수 있음)
+                window.close();
+                
+                // 탭이 닫히지 않는 경우를 위한 대안
+                setTimeout(() => {
+                    // 탭이 여전히 열려있다면 사용자에게 안내
+                    if (!window.closed) {
+                        alert('신청이 완료되었습니다. 브라우저 보안 정책으로 인해 탭을 자동으로 닫을 수 없습니다.\n수동으로 탭을 닫아주세요.');
+                    }
+                }, 100);
+            }
+        } catch (error) {
+            console.log('탭 닫기 실패:', error);
+            // 탭 닫기가 실패하면 사용자에게 안내
+            alert('신청이 완료되었습니다. 브라우저 보안 정책으로 인해 탭을 자동으로 닫을 수 없습니다.\n수동으로 탭을 닫아주세요.');
         }
     }
     
