@@ -49,7 +49,7 @@ const productSections = [
                 
                 id: 5,
                 name: "M 점프",
-                price: 30000,
+                price: 28600,
                 description: "안내문 출력 서비스",
                 details: ["고품질 안내문 인쇄 서비스", "다양한 크기와 형태 지원", "빠른 제작 및 배송"],
                 note: "안내문 제트는 고객의 요구에 맞춘 맞춤형 인쇄 서비스를 제공합니다."
@@ -57,7 +57,7 @@ const productSections = [
             {
                 id: 6,
                 name: "M 파워점프",
-                price: 45000,
+                price: 29700,
                 description: "현장 직접 배정 서비스",
                 details: ["현장 직접 방문", "실시간 상황 파악", "즉시 문제 해결"],
                 note: "현장배정은 직접 방문하여 정확한 서비스를 제공합니다."
@@ -65,7 +65,7 @@ const productSections = [
             {
                 id: 7,
                 name: "슈퍼더블업",
-                price: 65000,
+                price: 31900,
                 description: "긴급 출장 서비스",
                 details: ["24시간 긴급 대응", "1시간 내 출발", "응급상황 전문 처리"],
                 note: "긴급출장은 응급상황에 신속하게 대응하는 특별 서비스입니다."
@@ -73,7 +73,7 @@ const productSections = [
             {
                 id: 8,
                 name: "슈퍼점프 5회",
-                price: 55000,
+                price: 33000,
                 description: "야간 시간 출장 서비스",
                 details: ["야간 시간대 서비스", "추가 수당 포함", "안전 보장"],
                 note: "야간출장은 야간 시간에도 안전하게 서비스를 제공합니다."
@@ -81,7 +81,7 @@ const productSections = [
             {
                 id: 9,
                 name: "슈퍼점프 8회",
-                price: 50000,
+                price: 35200,
                 description: "주말 출장 서비스",
                 details: ["토요일/일요일 서비스", "휴일 할증료 포함", "예약 우선 처리"],
                 note: "주말출장은 휴일에도 차질없는 서비스를 보장합니다."
@@ -89,7 +89,7 @@ const productSections = [
             {
                 id: 10,
                 name: "슈퍼점프 11회",
-                price: 27500,
+                price: 39600,
                 description: "M 사이즈 터널정 서비스",
                 details: ["중간 크기 터널정 설치", "내구성이 뛰어난 소재 사용", "전문 기술진 설치 작업"],
                 note: "M 터널정은 중간 규모의 공간에 적합한 터널형 설치물입니다."
@@ -101,8 +101,8 @@ const productSections = [
         products: [
             {
                 id: 11,
-                name: "M 아이콘",
-                price: 28600,
+                name: "M 강조문구",
+                price: 16500,
                 description: "M 사이즈 정표 서비스",
                 details: ["중간 크기 정표 제작", "내후성 재료로 제작", "맞춤형 디자인 가능"],
                 note: "M 정표는 실외 환경에서도 오래 사용할 수 있는 내구성 있는 정표입니다."
@@ -110,15 +110,15 @@ const productSections = [
             {
                 id: 12,
                 name: "M 회사명컬러",
-                price: 29700,
+                price: 16500,
                 description: "M 사이즈 파워원고 서비스",
                 details: ["중간 크기 파워원고 제작", "고품질 인쇄 기술 적용", "빠른 제작 완료"],
                 note: "M 파워원고는 강력한 시각적 임팩트를 제공하는 중간 크기의 광고물입니다."
             },
             {
                 id: 13,
-                name: "M 강조문구",
-                price: 32500,
+                name: "M 아이콘",
+                price: 17600,
                 description: "M 사이즈 바이원고 서비스",
                 details: ["양면 인쇄 가능", "높은 가시성 제공", "경제적인 홍보 효과"],
                 note: "M 바이원고는 양면 활용으로 더 많은 정보를 효과적으로 전달합니다."
@@ -131,7 +131,7 @@ const productSections = [
             {
                 id: 14,
                 name: "M 지역배너",
-                price: 42000,
+                price: 30800,
                 description: "L 사이즈 터널정 서비스",
                 details: ["대형 터널정 설치", "높은 시인성", "장기간 내구성"],
                 note: "L 터널정은 대형 공간에 적합한 대규모 설치물입니다."
@@ -139,7 +139,7 @@ const productSections = [
             {
                 id: 15,
                 name: "M 지역 TOP 배너",
-                price: 31900,
+                price: 83200,
                 description: "슈퍼디볼 서비스",
                 details: ["대형 디스플레이 볼 설치", "360도 시각 효과 제공", "고급 LED 기술 적용"],
                 note: "슈퍼디볼은 혁신적인 구형 디스플레이로 주목도 높은 광고 효과를 제공합니다."
@@ -147,7 +147,7 @@ const productSections = [
             {
                 id: 16,
                 name: "M 급구 TOP 배너",
-                price: 48500,
+                price: 51700,
                 description: "슈퍼디볼 프로 서비스",
                 details: ["4K 해상도 지원", "스마트 제어 시스템", "원격 모니터링"],
                 note: "슈퍼디볼 프로는 최고 품질의 디스플레이 기술을 제공합니다."
@@ -155,7 +155,7 @@ const productSections = [
             {
                 id: 17,
                 name: "프리미엄 TOP 배너",
-                price: 38900,
+                price: 200800,
                 description: "슈퍼디볼 플러스 서비스",
                 details: ["향상된 밝기", "절전 모드 지원", "자동 밝기 조절"],
                 note: "슈퍼디볼 플러스는 에너지 효율성과 성능을 모두 갖춘 제품입니다."
@@ -168,7 +168,7 @@ const productSections = [
             {
                 id: 18,
                 name: "M 지역 Point",
-                price: 22500,
+                price: 57200,
                 description: "미니 디스플레이볼 서비스",
                 details: ["소형 공간 최적화", "저전력 소비", "쉬운 설치"],
                 note: "미니디볼은 작은 공간에서도 효과적인 디스플레이 효과를 제공합니다."
@@ -176,7 +176,7 @@ const productSections = [
             {
                 id: 19,
                 name: "M 지역 Special 결합",
-                price: 33000,
+                price: 72300,
                 description: "슈퍼점프 5회 이용권",
                 details: ["총 5회 이용 가능한 패키지", "유효기간 3개월", "추가 할인 혜택 제공"],
                 note: "슈퍼점프 5회 이용권은 경제적인 패키지 상품입니다."
@@ -184,7 +184,7 @@ const productSections = [
             {
                 id: 20,
                 name: "M 지역 Focus 결합",
-                price: 38000,
+                price: 85100,
                 description: "슈퍼점프 5회 플러스 이용권",
                 details: ["5회 + 보너스 1회", "유효기간 4개월", "우선 예약 특권"],
                 note: "슈퍼점프 5회 플러스는 추가 혜택이 포함된 패키지입니다."
@@ -192,7 +192,7 @@ const productSections = [
             {
                 id: 21,
                 name: "M 지역 Grand 결합",
-                price: 22000,
+                price: 105300,
                 description: "슈퍼점프 3회 이용권",
                 details: ["총 3회 이용 가능", "유효기간 2개월", "부담없는 체험 패키지"],
                 note: "슈퍼점프 3회는 처음 이용하시는 분들을 위한 체험 패키지입니다."
@@ -200,7 +200,7 @@ const productSections = [
             {
                 id: 22,
                 name: "Special + M 지역 Special",
-                price: 44000,
+                price: 89100,
                 description: "슈퍼점프 7회 이용권",
                 details: ["총 7회 이용 가능", "유효기간 5개월", "중간 할인율 적용"],
                 note: "슈퍼점프 7회는 적당한 횟수로 구성된 인기 패키지입니다."
@@ -208,7 +208,7 @@ const productSections = [
             {
                 id: 23,
                 name: "Focus + M 지역 Focus",
-                price: 35200,
+                price: 109700,
                 description: "슈퍼점프 8회 이용권",
                 details: ["총 8회 이용 가능한 패키지", "유효기간 6개월", "VIP 고객 우대 서비스"],
                 note: "슈퍼점프 8회 이용권은 인기 있는 중간 패키지입니다."
@@ -216,7 +216,7 @@ const productSections = [
             {
                 id: 24,
                 name: "Grand + M 지역 Grand",
-                price: 42000,
+                price: 138300,
                 description: "슈퍼점프 8회 골드 이용권",
                 details: ["8회 + 골드 혜택", "유효기간 8개월", "전용 라운지 이용"],
                 note: "슈퍼점프 8회 골드는 프리미엄 혜택이 포함된 특별 패키지입니다."
@@ -224,7 +224,7 @@ const productSections = [
             {
                 id: 25,
                 name: "플래티넘-VIP + M 지역 Grand",
-                price: 28500,
+                price: 231000,
                 description: "슈퍼점프 6회 이용권",
                 details: ["총 6회 이용 가능", "유효기간 4개월", "기본 할인 혜택"],
                 note: "슈퍼점프 6회는 적절한 횟수와 가격의 균형 잡힌 패키지입니다."
@@ -237,7 +237,7 @@ const productSections = [
             {
                 id: 26,
                 name: "M TOP-Plus",
-                price: 39800,
+                price: 57200,
                 description: "슈퍼점프 9회 이용권",
                 details: ["총 9회 이용 가능", "유효기간 7개월", "추가 서비스 포함"],
                 note: "슈퍼점프 9회는 많은 이용을 원하는 고객을 위한 패키지입니다."
@@ -245,7 +245,7 @@ const productSections = [
             {
                 id: 27,
                 name: "M TOP-Logo 결합",
-                price: 43500,
+                price: 46500,
                 description: "슈퍼점프 10회 이용권",
                 details: ["총 10회 이용 가능", "유효기간 8개월", "최대 할인율"],
                 note: "슈퍼점프 10회는 높은 할인율을 제공하는 알뜰 패키지입니다."
@@ -253,7 +253,7 @@ const productSections = [
             {
                 id: 28,
                 name: "M TOP 결합",
-                price: 39600,
+                price: 40300,
                 description: "슈퍼점프 11회 이용권",
                 details: ["총 11회 이용 가능한 패키지", "유효기간 12개월", "최대 할인 혜택 및 특별 서비스"],
                 note: "슈퍼점프 11회 이용권은 최고가치 패키지입니다."
@@ -261,7 +261,7 @@ const productSections = [
             {
                 id: 29,
                 name: "M 지역 TOP-Logo 결합",
-                price: 45000,
+                price: 34300,
                 description: "슈퍼점프 12회 이용권",
                 details: ["총 12회 이용 가능", "유효기간 15개월", "연간 이용권 혜택"],
                 note: "슈퍼점프 12회는 1년 내내 이용할 수 있는 연간 패키지입니다."
@@ -269,7 +269,7 @@ const productSections = [
             {
                 id: 30,
                 name: "M 지역 TOP 결합",
-                price: 55000,
+                price: 32300,
                 description: "슈퍼점프 15회 이용권",
                 details: ["총 15회 이용 가능", "유효기간 18개월", "최대 할인율 적용"],
                 note: "슈퍼점프 15회는 가장 경제적인 대용량 패키지입니다."
@@ -277,7 +277,7 @@ const productSections = [
             {
                 id: 31,
                 name: "M 급구 결합",
-                price: 68000,
+                price: 34300,
                 description: "슈퍼점프 20회 이용권",
                 details: ["총 20회 이용 가능", "유효기간 24개월", "패밀리 이용 가능"],
                 note: "슈퍼점프 20회는 가족 단위 이용에 최적화된 대용량 패키지입니다."
@@ -285,7 +285,7 @@ const productSections = [
             {
                 id: 32,
                 name: "M 단기",
-                price: 150000,
+                price: 36800,
                 description: "VIP 전용 멤버십",
                 details: ["모든 서비스 무제한", "전용 고객센터", "개인 맞춤 서비스"],
                 note: "VIP 멤버십은 최고급 서비스를 원하는 고객을 위한 프리미엄 패키지입니다."
@@ -293,7 +293,7 @@ const productSections = [
             {
                 id: 33,
                 name: "M 맞춤 TOP-Logo",
-                price: 120000,
+                price: 220000,
                 description: "가족 전용 패키지",
                 details: ["가족 구성원 모두 이용", "공유 이용권", "패밀리 할인"],
                 note: "패밀리 패키지는 온 가족이 함께 이용할 수 있는 특별 상품입니다."
@@ -305,16 +305,16 @@ const productSections = [
         products: [
             {
                 id: 34,
-                name: "키워드-Logo",
-                price: 200000,
+                name: "키워드",
+                price: 5500,
                 description: "기업 전용 패키지",
                 details: ["직원 복리후생", "대량 이용 할인", "기업 맞춤 서비스"],
                 note: "기업 패키지는 회사 복리후생을 위한 맞춤형 서비스입니다."
             },
             {
                 id: 35,
-                name: "키워드",
-                price: 300000,
+                name: "키워드-Logo",
+                price: 8800,
                 description: "1년 무제한 이용권",
                 details: ["모든 서비스 무제한", "365일 이용 가능", "최고 가치 제공"],
                 note: "무제한 패스는 1년 동안 모든 서비스를 제한 없이 이용할 수 있는 최고급 패키지입니다."

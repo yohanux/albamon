@@ -5,8 +5,10 @@
     box-sizing: border-box;
 }
 
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.8/dist/web/static/pretendard.css');
+
 body {
-    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-family: "Pretendard", -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     background-color: #f8f9fa;
     color: #333;
     line-height: 1.5;
@@ -45,7 +47,7 @@ body {
 /* 메인 콘텐츠 */
 .main {
     flex: 1;
-    padding: 8px;
+    padding: 0 30px;
     overflow-y: auto;
     margin-top: 58px;
     margin-bottom: 120px;
@@ -77,22 +79,32 @@ body {
     background: white;
     border-radius: 8px;
     overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
 }
 
 
 .product-header {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 12px;
     padding: 16px;
     cursor: pointer;
 }
 
 .product-checkbox {
-    width: 20px;
-    height: 20px;
-    accent-color: #FF501B;
+    width: 24px;
+    height: 24px;
     cursor: pointer;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url('./icon/checkboxoff.svg');
+    background-size: 24px 24px;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.product-checkbox:checked {
+    background-image: url('./icon/checkboxon.svg');
 }
 
 .product-info {
@@ -100,29 +112,44 @@ body {
 }
 
 .product-name {
-    font-size: 16px;
-    font-weight: 500;
+    font-size: 14px;
+    font-weight: 700;
     color: #333;
     margin-bottom: 2px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+
+.info-icon {
+    flex-shrink: 0;
 }
 
 .product-price {
-    font-size: 14px;
+    font-size: 16px;
     color: #FF501B;
-    font-weight: 500;
+    font-weight: 700;
+}
+
+.price-unit {
+    font-size: 12px;
+    color: #6a6a6a;
+    font-weight: 400;
+    margin-left: 2px;
 }
 
 .accordion-icon {
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #999;
+    flex-shrink: 0;
 }
 
-.product-item.expanded .accordion-icon {
-    transform: rotate(180deg);
+.accordion-icon img {
+    width: 24px;
+    height: 24px;
 }
 
 .product-content {
@@ -380,7 +407,7 @@ body {
     }
     
     .main {
-        padding: 6px;
+        padding: 0 30px;
     }
     
     .product-header {
@@ -392,7 +419,7 @@ body {
     }
     
     .product-name {
-        font-size: 15px;
+        font-size: 14px;
     }
     
     .quantity-dropdown {

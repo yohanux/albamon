@@ -25,14 +25,16 @@ class UIRenderer {
             section.products.forEach(product => {
                 const isSelected = cartManager.cart[product.id];
                 const isExpanded = this.expandedItems[product.id];
-                const quantity = isSelected ? cartManager.cart[product.id].quantity : 1;
+                // 저장된 수량이 있으면 사용, 없으면 2로 설정 (최소 2일)
+                const quantity = cartManager.quantities[product.id] || 2;
                 const productTotal = product.price * quantity;
                 
-                // 수량 옵션 생성 (1-10개)
+                // 수량 옵션 생성 (일 단위)
+                const dayOptions = [2, 3, 4, 5, 6, 7, 15, 30];
                 let quantityOptions = '';
-                for (let i = 1; i <= 10; i++) {
-                    quantityOptions += `<option value="${i}" ${i === quantity ? 'selected' : ''}>${i}</option>`;
-                }
+                dayOptions.forEach(days => {
+                    quantityOptions += `<option value="${days}" ${days === quantity ? 'selected' : ''}>${days}일</option>`;
+                });
                 
                 const productElement = document.createElement('div');
                 productElement.className = `product-item ${isSelected ? 'selected' : ''} ${isExpanded ? 'expanded' : ''}`;
@@ -43,13 +45,14 @@ class UIRenderer {
                                ${isSelected ? 'checked' : ''}
                                onclick="event.stopPropagation()">
                         <div class="product-info">
-                            <div class="product-name">${product.name}</div>
-                            <div class="product-price">${this.formatNumber(product.price)}원</div>
+                            <div class="product-name">
+                                ${product.name}
+                                <img src="./icon/information.svg" class="info-icon" width="20" height="20" alt="정보">
+                            </div>
+                            <div class="product-price">${this.formatNumber(product.price)}<span class="price-unit">원/일</span></div>
                         </div>
-                        <div class="accordion-icon">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor">
-                                <path d="M7 10l5 5 5-5z"/>
-                            </svg>
+                        <div class="accordion-icon ${isExpanded ? 'expanded' : ''}">
+                            <img src="./icon/${isExpanded ? 'fold' : 'expand'}.svg" width="24" height="24" alt="${isExpanded ? '접기' : '펼치기'}">
                         </div>
                     </div>
                     <div class="product-content">
@@ -65,16 +68,14 @@ class UIRenderer {
                                 ${product.note}
                             </div>
                         ` : ''}
-                        ${isSelected ? `
-                            <div class="quantity-controls">
-                                <div class="quantity-section">
-                                    <select class="quantity-dropdown" onchange="cartManager.changeQuantity(${product.id}, this.value)">
-                                        ${quantityOptions}
-                                    </select>
-                                </div>
-                                <div class="quantity-amount">${this.formatNumber(productTotal)}원</div>
+                        <div class="quantity-controls">
+                            <div class="quantity-section">
+                                <select class="quantity-dropdown" onchange="cartManager.changeQuantity(${product.id}, this.value)">
+                                    ${quantityOptions}
+                                </select>
                             </div>
-                        ` : ''}
+                            <div class="quantity-amount">${this.formatNumber(productTotal)}<span class="price-unit">원</span></div>
+                        </div>
                     </div>
                 `;
                 

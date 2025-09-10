@@ -2,6 +2,7 @@
 class CartManager {
     constructor() {
         this.cart = {};
+        this.quantities = {}; // 모든 상품의 수량을 저장 (체크 여부와 관계없이)
         this.isBottomSheetOpen = false;
         this.isDragging = false;
         this.startY = 0;
@@ -33,9 +34,11 @@ class CartManager {
         if (this.cart[product.id]) {
             delete this.cart[product.id];
         } else {
+            // 저장된 수량이 있으면 사용, 없으면 2로 설정 (최소 2일)
+            const quantity = this.quantities[product.id] || 2;
             this.cart[product.id] = {
                 ...product,
-                quantity: 1
+                quantity: quantity
             };
         }
         this.updateDisplay();
@@ -43,10 +46,17 @@ class CartManager {
     
     // 수량 변경
     changeQuantity(productId, newQuantity) {
+        const quantity = parseInt(newQuantity);
+        
+        // 모든 상품의 수량을 quantities에 저장 (체크 여부와 관계없이)
+        this.quantities[productId] = quantity;
+        
+        // 만약 체크된 상품이라면 cart에도 수량 업데이트
         if (this.cart[productId]) {
-            this.cart[productId].quantity = parseInt(newQuantity);
-            this.updateDisplay();
+            this.cart[productId].quantity = quantity;
         }
+        
+        this.updateDisplay();
     }
     
     // 총 금액과 상품 개수 계산
@@ -161,6 +171,11 @@ class CartManager {
             this.cartBottomSheet.classList.remove('show');
             this.updateDisplay();
         }
+    }
+    
+    // 상품의 현재 수량 가져오기
+    getQuantity(productId) {
+        return this.quantities[productId] || 2;
     }
     
     // 숫자 포맷팅
