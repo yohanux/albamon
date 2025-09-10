@@ -3,10 +3,18 @@ class UIRenderer {
     constructor() {
         this.expandedItems = {};
         this.productList = document.getElementById('productList');
+        this.infoOverlay = document.getElementById('infoOverlay');
         
         // 장바구니 업데이트 이벤트 리스너
         window.addEventListener('cartUpdated', (e) => {
             this.renderProducts();
+        });
+        
+        // 정보 팝업 오버레이 클릭 이벤트
+        this.infoOverlay.addEventListener('click', (e) => {
+            if (e.target === this.infoOverlay) {
+                this.hideInfoPopup();
+            }
         });
     }
     
@@ -47,7 +55,7 @@ class UIRenderer {
                         <div class="product-info">
                             <div class="product-name">
                                 ${product.name}
-                                <img src="./icon/information.svg" class="info-icon" width="20" height="20" alt="정보">
+                                <img src="./icon/information.svg" class="info-icon" width="20" height="20" alt="정보" onclick="uiRenderer.showInfoPopup(event)">
                             </div>
                             <div class="product-price">${this.formatNumber(product.price)}<span class="price-unit">원/일</span></div>
                         </div>
@@ -110,6 +118,19 @@ class UIRenderer {
             if (product) return product;
         }
         return null;
+    }
+    
+    // 정보 팝업 보이기
+    showInfoPopup(event) {
+        event.stopPropagation();
+        this.infoOverlay.classList.add('show');
+        document.body.style.overflow = 'hidden'; // 배경 스크롤 방지
+    }
+    
+    // 정보 팝업 숨기기
+    hideInfoPopup() {
+        this.infoOverlay.classList.remove('show');
+        document.body.style.overflow = ''; // 배경 스크롤 복원
     }
 }
 

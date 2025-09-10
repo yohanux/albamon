@@ -467,6 +467,48 @@ body {
     padding-right: 28px;
 }
 
+/* Information Bottom Sheet Popup */
+.info-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.6);
+    z-index: 9999;
+    display: flex;
+    align-items: flex-end;
+    justify-content: center;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.info-overlay.show {
+    opacity: 1;
+    visibility: visible;
+}
+
+.info-bottom-sheet {
+    width: 100%;
+    max-width: 480px;
+    background: white;
+    border-radius: 16px 16px 0 0;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+    overflow: hidden;
+}
+
+.info-overlay.show .info-bottom-sheet {
+    transform: translateY(0);
+}
+
+.info-sheet-image {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
 /* 반응형 디자인 */
 @media (max-width: 480px) {
     .container {
