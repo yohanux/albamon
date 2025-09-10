@@ -93,6 +93,12 @@ class UIRenderer {
                 const checkbox = productElement.querySelector('.product-checkbox');
                 checkbox.addEventListener('change', () => {
                     cartManager.toggleProduct(product);
+                    
+                    // 체크했을 때만 아코디언 펼치기 (체크 해제 시에는 그대로 유지)
+                    if (checkbox.checked) {
+                        this.expandedItems[product.id] = true;
+                        this.renderProducts();
+                    }
                 });
                 
                 this.productList.appendChild(productElement);
