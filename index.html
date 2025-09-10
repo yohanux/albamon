@@ -17,18 +17,24 @@
             </div>
             <div class="filter-buttons">
                 <button class="filter-btn">
-                    <img src="./icon/IconFilter.svg" alt="필터" width="14" height="14">
-                    <span>3주 맞춤 조건</span>
+                    <img src="./icon/IconFilter.svg" alt="필터" width="16" height="16">
+                    <span>맞춤 조건</span>
                 </button>
                 <button class="filter-btn">
-                    <img src="./icon/reset.svg" alt="리셋" width="14" height="14">
+                    <img src="./icon/reset.svg" alt="리셋" width="16" height="16">
                     <span>초기화</span>
                 </button>
-                <button class="filter-btn">
-                    <img src="./icon/soarting.svg" alt="정렬" width="14" height="14">
-                    <span>기본순</span>
-                    <img src="./icon/dropdownsmall.svg" alt="드롭다운" width="12" height="12">
-                </button>
+                <div class="filter-dropdown-container">
+                    <button class="filter-btn dropdown-btn" id="sortButton">
+                        <span id="sortText">기본순</span>
+                        <img src="./icon/soarting.svg" alt="정렬" width="16" height="16">
+                    </button>
+                    <div class="filter-dropdown" id="sortDropdown">
+                        <div class="dropdown-option" data-value="default">기본순</div>
+                        <div class="dropdown-option" data-value="recommended">추천순</div>
+                        <div class="dropdown-option" data-value="price">금액순</div>
+                    </div>
+                </div>
             </div>
         </header>
 

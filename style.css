@@ -48,8 +48,8 @@ body {
 }
 
 .back-button {
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -72,12 +72,12 @@ body {
     display: flex;
     align-items: center;
     gap: 6px;
-    padding: 8px 12px;
+    padding: 10px 12px 10px 10px;
     background: white;
     border: 1px solid #E0E0E0;
     border-radius: 20px;
-    font-size: 13px;
-    color: #666;
+    font-size: 12px;
+    color: #666666;
     cursor: pointer;
     white-space: nowrap;
 }
@@ -87,8 +87,60 @@ body {
 }
 
 .filter-btn span {
-    color: #666;
+    color: #666666;
     font-weight: 400;
+}
+
+.dropdown-btn {
+    padding: 10px 10px 10px 12px;
+}
+
+/* 필터 드롭다운 */
+.filter-dropdown-container {
+    position: relative;
+}
+
+.dropdown-btn {
+    cursor: pointer;
+}
+
+.filter-dropdown {
+    position: absolute;
+    top: 100%;
+    left: 0;
+    right: 0;
+    background: white;
+    border: 1px solid #E0E0E0;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    margin-top: 4px;
+    display: none;
+}
+
+.filter-dropdown.show {
+    display: block;
+}
+
+.dropdown-option {
+    padding: 12px 16px;
+    font-size: 12px;
+    color: #666666;
+    cursor: pointer;
+    border-bottom: 1px solid #f5f5f5;
+}
+
+.dropdown-option:last-child {
+    border-bottom: none;
+}
+
+.dropdown-option:hover {
+    background: #f8f9fa;
+}
+
+.dropdown-option.selected {
+    color: #FF501B;
+    font-weight: 600;
 }
 
 /* 메인 콘텐츠 */
