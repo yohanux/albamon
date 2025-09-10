@@ -158,7 +158,7 @@ body {
     flex: 1;
     padding: 0 30px;
     overflow-y: auto;
-    margin-top: 120px;
+    margin-top: 132px;
     margin-bottom: 120px;
 }
 
@@ -173,8 +173,8 @@ body {
     font-size: 16px;
     font-weight: 600;
     color: #333;
-    padding: 16px 12px 8px 12px;
-    margin-top: 12px;
+    padding: 0 12px 4px 12px;
+    margin-top: 16px;
     background-color: #f8f9fa;
     border-radius: 6px;
 }
@@ -886,4 +886,12 @@ body {
 .confirm-btn:disabled {
     background: #ccc;
     cursor: not-allowed;
+}
+
+/* 필터 태그 */
+.filter-tags {
+    color: #FF501B;
+    font-size: 16px;
+    font-weight: 700;
+    padding-left: 12px;
 }

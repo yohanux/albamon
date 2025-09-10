@@ -177,11 +177,11 @@ class UIRenderer {
         // 필터링된 섹션 배열로 변환
         this.filteredProducts = Object.values(groupedBySections);
         
-        // 필터 조건 텍스트 생성 및 표시
-        this.showFilterTags(goalValue, budgetValue);
-        
         // 리렌더링
         this.renderProducts();
+        
+        // 필터 조건 텍스트 생성 및 표시 (렌더링 후)
+        this.showFilterTags(goalValue, budgetValue);
         
         console.log('랜덤 4개 상품 필터링 적용:', selectedProducts.map(p => p.name));
     }
@@ -189,8 +189,61 @@ class UIRenderer {
     // 모든 상품 표시 (필터 해제)
     showAllProducts() {
         this.filteredProducts = null;
+        this.hideFilterTags(); // 필터 태그 제거
         this.renderProducts();
         console.log('모든 상품 표시로 복원');
+    }
+    
+    // 필터 조건 태그 표시
+    showFilterTags(goalValue, budgetValue) {
+        console.log('showFilterTags 호출:', goalValue, budgetValue);
+        
+        // 기존 필터 태그 제거
+        this.hideFilterTags();
+        
+        // 목표 텍스트 매핑
+        const goalTexts = {
+            'visibility': '많은 사람에게',
+            'awareness': '급하게',
+            'professional': '전문적으로',
+            'careful': '눈에 띄게'
+        };
+        
+        // 예산 텍스트 매핑
+        const budgetTexts = {
+            0: '적은 예산으로',
+            1: '보통 예산으로',
+            2: '많은 예산으로'
+        };
+        
+        const goalText = goalTexts[goalValue] || '';
+        const budgetText = budgetTexts[budgetValue] || '';
+        
+        console.log('태그 텍스트:', goalText, budgetText);
+        
+        // 필터 태그 요소 생성
+        const filterTags = document.createElement('div');
+        filterTags.className = 'filter-tags';
+        filterTags.innerHTML = `#${goalText} #${budgetText}`;
+        
+        console.log('태그 요소 생성:', filterTags.innerHTML);
+        
+        // 상품 리스트 상단에 삽입
+        if (this.productList && this.productList.firstChild) {
+            this.productList.insertBefore(filterTags, this.productList.firstChild);
+            console.log('태그가 상품 리스트에 삽입됨');
+        } else {
+            this.productList.appendChild(filterTags);
+            console.log('태그가 상품 리스트에 추가됨');
+        }
+    }
+    
+    // 필터 조건 태그 제거
+    hideFilterTags() {
+        const existingTags = this.productList.querySelector('.filter-tags');
+        if (existingTags) {
+            existingTags.remove();
+        }
     }
 }
 

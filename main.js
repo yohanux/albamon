@@ -180,8 +180,8 @@ function initCustomFilterModal() {
         if (savedSettings.isConfigured) {
             customFilterBtn.classList.add('active');
             filterIcon.src = './icon/IconFilteron.svg';
-            // 랜덤 4개 상품 필터링 적용
-            applyRandomFilter();
+            // 랜덤 4개 상품 필터링 적용 (설정값 전달)
+            applyRandomFilter(savedSettings.goal, savedSettings.budget);
         } else {
             customFilterBtn.classList.remove('active');
             filterIcon.src = './icon/IconFilter.svg';
@@ -213,11 +213,11 @@ function initCustomFilterModal() {
         savedSettings.budget = currentSliderValue;
         savedSettings.isConfigured = true;
         
-        // 필터 버튼 활성화 상태 업데이트
-        updateFilterButtonState();
-        
         // 로컬 스토리지에 저장 (선택사항)
         localStorage.setItem('customFilterSettings', JSON.stringify(savedSettings));
+        
+        // 필터 버튼 활성화 상태 업데이트
+        updateFilterButtonState();
         
         // 슬라이더 값과 라디오 값 로그
         console.log('맞춤 조건 설정 저장:', savedSettings);
@@ -226,16 +226,9 @@ function initCustomFilterModal() {
         closeModal();
     });
     
-    // 로컬 스토리지에서 설정값 복원 (페이지 로드 시)
-    const storedSettings = localStorage.getItem('customFilterSettings');
-    if (storedSettings) {
-        try {
-            savedSettings = JSON.parse(storedSettings);
-            updateFilterButtonState();
-        } catch (e) {
-            console.log('설정값 복원 실패:', e);
-        }
-    }
+    // 페이지 새로고침 시 모든 설정값 초기화
+    localStorage.removeItem('customFilterSettings');
+    console.log('페이지 로드 시 모든 설정값 초기화');
     
     // 초기 슬라이더 값 설정
     updateSlider(0);
@@ -257,9 +250,9 @@ function initCustomFilterModal() {
 }
 
 // 랜덤 필터 적용 (전역 함수)
-function applyRandomFilter() {
+function applyRandomFilter(goalValue, budgetValue) {
     if (uiRenderer) {
-        uiRenderer.applyRandomFilter();
+        uiRenderer.applyRandomFilter(goalValue, budgetValue);
     }
 }
 
