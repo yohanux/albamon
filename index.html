@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>상품 주문하기</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1>상품선택</h1>
+        </header>
+
+        <main class="main">
+            <div class="product-list" id="productList">
+                <!-- 상품들이 JavaScript로 동적으로 생성됩니다 -->
+            </div>
+        </main>
+
+        <div class="cart-bottom-sheet" id="cartBottomSheet">
+            <div class="bottom-sheet-handle" id="bottomSheetHandle">
+                <div class="handle-bar"></div>
+            </div>
+            <div class="cart-items" id="cartItems">
+                <!-- 장바구니 아이템들이 여기에 표시됩니다 -->
+            </div>
+        </div>
+
+        <footer class="footer">
+            <div class="total-info">
+                <div class="total-amount">총 신청금액 <span id="totalPrice">0</span>원</div>
+            </div>
+            <div class="cta-buttons">
+                <button class="cart-btn" id="cartBtn">
+                    장바구니
+                </button>
+                <button class="apply-btn" id="applyBtn" disabled>
+                    신청
+                </button>
+            </div>
+        </footer>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="cart.js"></script>
+    <script src="ui.js"></script>
+    <script src="main.js"></script>
+</body>
+</html>
