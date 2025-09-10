@@ -18,18 +18,20 @@
             </div>
         </main>
 
-        <div class="cart-bottom-sheet" id="cartBottomSheet">
-            <div class="cart-items" id="cartItems">
-                <!-- 장바구니 아이템들이 여기에 표시됩니다 -->
-            </div>
-        </div>
-
         <footer class="footer">
             <div class="bottom-sheet-handle" id="bottomSheetHandle">
                 <div class="handle-bar"></div>
             </div>
+            <div class="cart-items-container" id="cartItemsContainer">
+                <div class="cart-items" id="cartItems">
+                    <!-- 장바구니 아이템들이 여기에 표시됩니다 -->
+                </div>
+            </div>
             <div class="total-info">
-                <div class="total-amount">총 신청금액 <span id="totalPrice">0</span>원</div>
+                <div class="total-amount">
+                    <span class="total-label">총 신청금액</span>
+                    <span class="total-price"><span id="totalPrice">0</span>원</span>
+                </div>
             </div>
             <div class="cta-buttons">
                 <button class="cart-btn" id="cartBtn">

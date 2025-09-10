@@ -9,7 +9,7 @@ class CartManager {
         this.currentY = 0;
         
         // DOM 요소들
-        this.cartBottomSheet = document.getElementById('cartBottomSheet');
+        this.cartItemsContainer = document.getElementById('cartItemsContainer');
         this.bottomSheetHandle = document.getElementById('bottomSheetHandle');
         this.cartItems = document.getElementById('cartItems');
         this.cartBtn = document.getElementById('cartBtn');
@@ -95,7 +95,7 @@ class CartManager {
         // 장바구니 배지 업데이트
         this.updateCartBadge(selectedProductCount);
         
-        // 바텀시트가 열려있으면 장바구니 내용 업데이트
+        // 장바구니가 확장되어 있으면 내용 업데이트
         if (this.isBottomSheetOpen) {
             this.renderCartItems();
         }
@@ -114,31 +114,31 @@ class CartManager {
         }
     }
     
-    // 바텀시트 토글
+    // 장바구니 토글
     toggleBottomSheet() {
         this.isBottomSheetOpen = !this.isBottomSheetOpen;
         if (this.isBottomSheetOpen) {
-            this.cartBottomSheet.classList.add('show');
+            this.cartItemsContainer.classList.add('expanded');
             this.renderCartItems();
         } else {
-            this.cartBottomSheet.classList.remove('show');
+            this.cartItemsContainer.classList.remove('expanded');
         }
     }
     
-    // 바텀시트 열기
+    // 장바구니 열기
     openBottomSheet() {
         if (!this.isBottomSheetOpen) {
             this.isBottomSheetOpen = true;
-            this.cartBottomSheet.classList.add('show');
+            this.cartItemsContainer.classList.add('expanded');
             this.renderCartItems();
         }
     }
     
-    // 바텀시트 닫기
+    // 장바구니 닫기
     closeBottomSheet() {
         if (this.isBottomSheetOpen) {
             this.isBottomSheetOpen = false;
-            this.cartBottomSheet.classList.remove('show');
+            this.cartItemsContainer.classList.remove('expanded');
         }
     }
     
@@ -155,12 +155,31 @@ class CartManager {
             const itemTotal = item.price * item.quantity;
             const cartItem = document.createElement('div');
             cartItem.className = 'cart-item';
+            
+            // 무료등록 상품인지 확인
+            const isFreeProduct = item.name === "무료등록";
+            
+            // 드롭다운 옵션 생성
+            let quantityOptions = '';
+            if (!isFreeProduct) {
+                const dayOptions = [2, 3, 4, 5, 6, 7, 15, 30];
+                dayOptions.forEach(days => {
+                    quantityOptions += `<option value="${days}" ${days === item.quantity ? 'selected' : ''}>${days}일</option>`;
+                });
+            }
+            
             cartItem.innerHTML = `
                 <div class="cart-item-info">
                     <div class="cart-item-name">${item.name}</div>
-                    <div class="cart-item-price">${this.formatNumber(item.price)}원</div>
+                    <div class="cart-item-price">${this.formatNumber(itemTotal)}원</div>
                 </div>
-                <div class="cart-item-quantity">${item.quantity}개 / ${this.formatNumber(itemTotal)}원</div>
+                <div class="cart-item-controls">
+                    ${!isFreeProduct ? `
+                        <select class="cart-item-dropdown" onchange="cartManager.changeQuantity(${item.id}, this.value)">
+                            ${quantityOptions}
+                        </select>
+                    ` : ''}
+                </div>
             `;
             this.cartItems.appendChild(cartItem);
         });
@@ -191,7 +210,7 @@ class CartManager {
             // 신청 완료 후 장바구니 초기화
             this.cart = {};
             this.isBottomSheetOpen = false;
-            this.cartBottomSheet.classList.remove('show');
+            this.cartItemsContainer.classList.remove('expanded');
             this.updateDisplay();
         }
     }
@@ -241,12 +260,15 @@ class CartManager {
         this.currentY = e.clientY;
         const deltaY = this.currentY - this.startY;
         
+        // 드래그 시 시각적 피드백 (선택사항)
         if (this.isBottomSheetOpen && deltaY > 0) {
+            // 아래로 드래그할 때 살짝 줄어드는 효과
             const progress = Math.min(deltaY / 100, 1);
-            this.cartBottomSheet.style.transform = `translateX(-50%) translateY(calc(-100px + ${deltaY}px))`;
+            this.cartItemsContainer.style.opacity = 1 - progress * 0.3;
         } else if (!this.isBottomSheetOpen && deltaY < 0) {
+            // 위로 드래그할 때 살짝 나타나는 효과
             const progress = Math.min(Math.abs(deltaY) / 100, 1);
-            this.cartBottomSheet.style.transform = `translateX(-50%) translateY(calc(100% + ${deltaY}px))`;
+            this.cartItemsContainer.style.opacity = progress * 0.3;
         }
     }
     
@@ -259,10 +281,13 @@ class CartManager {
         this.currentY = e.touches[0].clientY;
         const deltaY = this.currentY - this.startY;
         
+        // 드래그 시 시각적 피드백 (터치)
         if (this.isBottomSheetOpen && deltaY > 0) {
-            this.cartBottomSheet.style.transform = `translateX(-50%) translateY(calc(-100px + ${deltaY}px))`;
+            const progress = Math.min(deltaY / 100, 1);
+            this.cartItemsContainer.style.opacity = 1 - progress * 0.3;
         } else if (!this.isBottomSheetOpen && deltaY < 0) {
-            this.cartBottomSheet.style.transform = `translateX(-50%) translateY(calc(100% + ${deltaY}px))`;
+            const progress = Math.min(Math.abs(deltaY) / 100, 1);
+            this.cartItemsContainer.style.opacity = progress * 0.3;
         }
     }
     
@@ -280,12 +305,11 @@ class CartManager {
                 this.closeBottomSheet();
             } else if (deltaY < 0 && !this.isBottomSheetOpen) {
                 this.openBottomSheet();
-            } else {
-                this.cartBottomSheet.style.transform = '';
             }
-        } else {
-            this.cartBottomSheet.style.transform = '';
         }
+        
+        // 드래그 완료 후 스타일 리셋
+        this.cartItemsContainer.style.opacity = '';
         
         document.removeEventListener('mousemove', this.handleMouseMove);
         document.removeEventListener('mouseup', this.handleMouseUp);
@@ -305,12 +329,11 @@ class CartManager {
                 this.closeBottomSheet();
             } else if (deltaY < 0 && !this.isBottomSheetOpen) {
                 this.openBottomSheet();
-            } else {
-                this.cartBottomSheet.style.transform = '';
             }
-        } else {
-            this.cartBottomSheet.style.transform = '';
         }
+        
+        // 드래그 완료 후 스타일 리셋
+        this.cartItemsContainer.style.opacity = '';
         
         document.removeEventListener('touchmove', this.handleTouchMove);
         document.removeEventListener('touchend', this.handleTouchEnd);
