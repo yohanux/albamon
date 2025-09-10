@@ -4,6 +4,7 @@ class UIRenderer {
         this.expandedItems = {};
         this.productList = document.getElementById('productList');
         this.infoOverlay = document.getElementById('infoOverlay');
+        this.filteredProducts = null; // 필터링된 상품 저장
         
         // 장바구니 업데이트 이벤트 리스너
         window.addEventListener('cartUpdated', (e) => {
@@ -22,7 +23,10 @@ class UIRenderer {
     renderProducts() {
         this.productList.innerHTML = '';
         
-        productSections.forEach(section => {
+        // 필터링된 상품이 있으면 사용, 없으면 전체 상품 사용
+        const sectionsToRender = this.filteredProducts || productSections;
+        
+        sectionsToRender.forEach(section => {
             // 섹션 타이틀 추가
             const sectionTitle = document.createElement('div');
             sectionTitle.className = 'section-title';
@@ -137,6 +141,56 @@ class UIRenderer {
     hideInfoPopup() {
         this.infoOverlay.classList.remove('show');
         document.body.style.overflow = ''; // 배경 스크롤 복원
+    }
+    
+    // 랜덤 4개 상품 필터링
+    applyRandomFilter(goalValue, budgetValue) {
+        // 모든 상품을 하나의 배열로 합치기
+        let allProducts = [];
+        productSections.forEach(section => {
+            section.products.forEach(product => {
+                allProducts.push({
+                    ...product,
+                    sectionTitle: section.title
+                });
+            });
+        });
+        
+        // 랜덤하게 4개 선택
+        const shuffled = allProducts.sort(() => 0.5 - Math.random());
+        const selectedProducts = shuffled.slice(0, 4);
+        
+        // 선택된 상품들을 섹션별로 그룹화
+        const groupedBySections = {};
+        selectedProducts.forEach(product => {
+            if (!groupedBySections[product.sectionTitle]) {
+                groupedBySections[product.sectionTitle] = {
+                    title: product.sectionTitle,
+                    products: []
+                };
+            }
+            // sectionTitle 제거하고 원본 상품 데이터만 저장
+            const { sectionTitle, ...productData } = product;
+            groupedBySections[product.sectionTitle].products.push(productData);
+        });
+        
+        // 필터링된 섹션 배열로 변환
+        this.filteredProducts = Object.values(groupedBySections);
+        
+        // 필터 조건 텍스트 생성 및 표시
+        this.showFilterTags(goalValue, budgetValue);
+        
+        // 리렌더링
+        this.renderProducts();
+        
+        console.log('랜덤 4개 상품 필터링 적용:', selectedProducts.map(p => p.name));
+    }
+    
+    // 모든 상품 표시 (필터 해제)
+    showAllProducts() {
+        this.filteredProducts = null;
+        this.renderProducts();
+        console.log('모든 상품 표시로 복원');
     }
 }
 

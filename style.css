@@ -91,6 +91,16 @@ body {
     font-weight: 400;
 }
 
+.filter-btn.active {
+    background: #FFF8F6;
+    border-color: #FFD6CA;
+    color: #FF501B;
+}
+
+.filter-btn.active span {
+    color: #FF501B;
+}
+
 .dropdown-btn {
     padding: 10px 10px 10px 12px;
 }
@@ -637,4 +647,243 @@ body {
     .quantity-amount {
         font-size: 15px;
     }
+}
+
+/* Custom Filter Modal */
+.custom-filter-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.6);
+    display: none;
+    align-items: flex-end;
+    justify-content: center;
+    z-index: 2000;
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.custom-filter-overlay.show {
+    display: flex;
+    opacity: 1;
+    visibility: visible;
+}
+
+.custom-filter-modal {
+    background: white;
+    border-radius: 16px 16px 0 0;
+    width: 100%;
+    max-height: 80vh;
+    overflow-y: auto;
+    transform: translateY(100%);
+    transition: transform 0.3s ease;
+}
+
+.custom-filter-overlay.show .custom-filter-modal {
+    transform: translateY(0);
+}
+
+.modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 24px;
+    border-bottom: 1px solid #f5f5f5;
+}
+
+.modal-header h2 {
+    font-size: 18px;
+    font-weight: 700;
+    color: #000;
+    margin: 0;
+}
+
+.close-btn {
+    background: none;
+    border: none;
+    padding: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    padding: 24px;
+}
+
+.question-section {
+    margin-bottom: 48px;
+}
+
+.question-section:last-child {
+    margin-bottom: 32px;
+}
+
+.question-section h3 {
+    font-size: 16px;
+    font-weight: 600;
+    color: #000;
+    margin: 0 0 16px 0;
+    line-height: 1.4;
+}
+
+.question-section:last-child h3 {
+    margin: 0 0 24px 0;
+}
+
+.required {
+    color: #FF501B;
+}
+
+/* Radio Button Styles */
+.radio-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+}
+
+.radio-option {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    cursor: pointer;
+    padding: 12px 0;
+}
+
+.radio-option input[type="radio"] {
+    display: none;
+}
+
+.radio-custom {
+    width: 20px;
+    height: 20px;
+    border: 2px solid #D2D2D2;
+    border-radius: 50%;
+    position: relative;
+    flex-shrink: 0;
+    margin-top: 2px;
+}
+
+.radio-option input[type="radio"]:checked + .radio-custom {
+    border-color: #FF501B;
+}
+
+.radio-option input[type="radio"]:checked + .radio-custom::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 8px;
+    height: 8px;
+    background: #FF501B;
+    border-radius: 50%;
+}
+
+.radio-text {
+    font-size: 14px;
+    color: #000;
+    line-height: 1.4;
+}
+
+/* Slider Styles */
+.slider-container {
+    margin-top: 20px;
+    padding: 0 24px;
+}
+
+.slider-track {
+    position: relative;
+    height: 4px;
+    background: #E5E5E5;
+    border-radius: 2px;
+    margin-bottom: 20px;
+}
+
+.slider-progress {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 100%;
+    background: #FF501B;
+    border-radius: 2px;
+    width: 0%;
+    transition: width 0.2s ease;
+}
+
+.slider-thumb {
+    position: absolute;
+    top: 50%;
+    left: 0%;
+    transform: translate(-50%, -50%);
+    width: 24px;
+    height: 24px;
+    background: #FF501B;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: left 0.2s ease;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.slider-labels {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+}
+
+.slider-label {
+    font-size: 14px;
+    color: #666;
+    text-align: center;
+    cursor: pointer;
+    padding: 8px 4px;
+    border-radius: 4px;
+    transition: color 0.2s ease;
+    line-height: 1.2;
+}
+
+.slider-label.active {
+    color: #FF501B;
+    font-weight: 600;
+}
+
+.sub-label {
+    font-size: 12px;
+    color: #999;
+    font-weight: 400;
+}
+
+.slider-label.active .sub-label {
+    color: #FF501B;
+}
+
+/* Modal Footer */
+.modal-footer {
+    padding: 16px 24px 24px 24px;
+}
+
+.confirm-btn {
+    width: 100%;
+    background: #FF501B;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    padding: 16px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+.confirm-btn:hover {
+    background: #e8451a;
+}
+
+.confirm-btn:disabled {
+    background: #ccc;
+    cursor: not-allowed;
 }
