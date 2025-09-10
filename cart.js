@@ -15,8 +15,10 @@ class CartManager {
         this.cartBtn = document.getElementById('cartBtn');
         this.applyBtn = document.getElementById('applyBtn');
         this.totalPrice = document.getElementById('totalPrice');
+        this.cartBadge = document.getElementById('cartBadge');
         
         this.init();
+        this.updateCartBadge(0); // 초기에는 배지 숨김
     }
     
     init() {
@@ -34,8 +36,8 @@ class CartManager {
         if (this.cart[product.id]) {
             delete this.cart[product.id];
         } else {
-            // 저장된 수량이 있으면 사용, 없으면 2로 설정 (최소 2일)
-            const quantity = this.quantities[product.id] || 2;
+            // 무료등록 상품은 수량 1로 고정, 나머지는 저장된 수량 또는 2로 설정
+            const quantity = product.name === "무료등록" ? 1 : (this.quantities[product.id] || 2);
             this.cart[product.id] = {
                 ...product,
                 quantity: quantity
@@ -46,6 +48,12 @@ class CartManager {
     
     // 수량 변경
     changeQuantity(productId, newQuantity) {
+        // 무료등록 상품은 수량 변경 불가
+        const product = this.findProduct(productId);
+        if (product && product.name === "무료등록") {
+            return;
+        }
+        
         const quantity = parseInt(newQuantity);
         
         // 모든 상품의 수량을 quantities에 저장 (체크 여부와 관계없이)
@@ -62,25 +70,30 @@ class CartManager {
     // 총 금액과 상품 개수 계산
     calculateTotals() {
         let itemCount = 0;
+        let selectedProductCount = 0; // 선택된 상품 종류 개수
         let totalAmount = 0;
         
         Object.values(this.cart).forEach(item => {
             itemCount += item.quantity;
+            selectedProductCount += 1; // 상품 종류 개수
             totalAmount += item.price * item.quantity;
         });
         
-        return { itemCount, totalAmount };
+        return { itemCount, selectedProductCount, totalAmount };
     }
     
     // 화면 업데이트
     updateDisplay() {
-        const { itemCount, totalAmount } = this.calculateTotals();
+        const { itemCount, selectedProductCount, totalAmount } = this.calculateTotals();
         
         // 총 금액 업데이트
         this.totalPrice.textContent = this.formatNumber(totalAmount);
         
         // 신청 버튼 활성화/비활성화
         this.applyBtn.disabled = itemCount === 0;
+        
+        // 장바구니 배지 업데이트
+        this.updateCartBadge(selectedProductCount);
         
         // 바텀시트가 열려있으면 장바구니 내용 업데이트
         if (this.isBottomSheetOpen) {
@@ -89,6 +102,16 @@ class CartManager {
         
         // 상품 리스트 업데이트를 위해 이벤트 발생
         window.dispatchEvent(new CustomEvent('cartUpdated', { detail: this.cart }));
+    }
+    
+    // 장바구니 배지 업데이트
+    updateCartBadge(count) {
+        if (count > 0) {
+            this.cartBadge.textContent = count;
+            this.cartBadge.classList.remove('hidden');
+        } else {
+            this.cartBadge.classList.add('hidden');
+        }
     }
     
     // 바텀시트 토글
@@ -176,6 +199,15 @@ class CartManager {
     // 상품의 현재 수량 가져오기
     getQuantity(productId) {
         return this.quantities[productId] || 2;
+    }
+    
+    // 상품 찾기 헬퍼 함수
+    findProduct(productId) {
+        for (const section of productSections) {
+            const product = section.products.find(p => p.id === productId);
+            if (product) return product;
+        }
+        return null;
     }
     
     // 숫자 포맷팅

@@ -68,14 +68,16 @@ class UIRenderer {
                                 ${product.note}
                             </div>
                         ` : ''}
-                        <div class="quantity-controls">
-                            <div class="quantity-section">
-                                <select class="quantity-dropdown" onchange="cartManager.changeQuantity(${product.id}, this.value)">
-                                    ${quantityOptions}
-                                </select>
+                        ${product.name !== "무료등록" ? `
+                            <div class="quantity-controls">
+                                <div class="quantity-section">
+                                    <select class="quantity-dropdown" onchange="cartManager.changeQuantity(${product.id}, this.value)">
+                                        ${quantityOptions}
+                                    </select>
+                                </div>
+                                <div class="quantity-amount">${this.formatNumber(productTotal)}<span class="price-unit">원</span></div>
                             </div>
-                            <div class="quantity-amount">${this.formatNumber(productTotal)}<span class="price-unit">원</span></div>
-                        </div>
+                        ` : ''}
                     </div>
                 `;
                 

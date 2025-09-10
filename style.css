@@ -242,7 +242,7 @@ body {
 .quantity-amount {
     font-size: 16px;
     font-weight: 600;
-    color: #FF501B;
+    color: #000000;
     text-align: right;
 }
 
@@ -316,10 +316,35 @@ body {
     font-size: 16px;
     font-weight: 500;
     cursor: pointer;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
 }
 
 .cart-btn:hover {
     background: #f8f9fa;
+}
+
+.cart-badge {
+    width: 16px;
+    height: 16px;
+    background-color: #FF501B;
+    color: white;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 11px;
+    font-weight: 500;
+    line-height: 1;
+    min-width: 16px;
+    order: -1; /* 텍스트보다 앞에 배치 */
+}
+
+.cart-badge.hidden {
+    display: none;
 }
 
 .apply-btn {
@@ -424,7 +449,7 @@ body {
     
     .quantity-dropdown {
         min-width: 55px;
-        font-size: 13px;
+        font-size: 14px;
         padding: 5px 6px;
     }
     
