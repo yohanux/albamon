@@ -171,7 +171,7 @@ class CartManager {
             cartItem.innerHTML = `
                 <div class="cart-item-info">
                     <div class="cart-item-name">${item.name}</div>
-                    <div class="cart-item-price">${this.formatNumber(itemTotal)}원</div>
+                    <div class="cart-item-price">${this.formatNumber(itemTotal)}<span class="cart-item-price-unit">원</span></div>
                 </div>
                 <div class="cart-item-controls">
                     ${!isFreeProduct ? `
