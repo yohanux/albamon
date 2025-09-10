@@ -188,12 +188,15 @@ class CartManager {
     handleMouseMove(e) {
         if (!this.isDragging) return;
         e.preventDefault();
+        // 배경 스크롤 방지
+        document.body.style.overflow = 'hidden';
+        
         this.currentY = e.clientY;
         const deltaY = this.currentY - this.startY;
         
         if (this.isBottomSheetOpen && deltaY > 0) {
             const progress = Math.min(deltaY / 100, 1);
-            this.cartBottomSheet.style.transform = `translateX(-50%) translateY(calc(-90px + ${deltaY}px))`;
+            this.cartBottomSheet.style.transform = `translateX(-50%) translateY(calc(-100px + ${deltaY}px))`;
         } else if (!this.isBottomSheetOpen && deltaY < 0) {
             const progress = Math.min(Math.abs(deltaY) / 100, 1);
             this.cartBottomSheet.style.transform = `translateX(-50%) translateY(calc(100% + ${deltaY}px))`;
@@ -203,11 +206,14 @@ class CartManager {
     handleTouchMove(e) {
         if (!this.isDragging) return;
         e.preventDefault();
+        // 배경 스크롤 방지
+        document.body.style.overflow = 'hidden';
+        
         this.currentY = e.touches[0].clientY;
         const deltaY = this.currentY - this.startY;
         
         if (this.isBottomSheetOpen && deltaY > 0) {
-            this.cartBottomSheet.style.transform = `translateX(-50%) translateY(calc(-90px + ${deltaY}px))`;
+            this.cartBottomSheet.style.transform = `translateX(-50%) translateY(calc(-100px + ${deltaY}px))`;
         } else if (!this.isBottomSheetOpen && deltaY < 0) {
             this.cartBottomSheet.style.transform = `translateX(-50%) translateY(calc(100% + ${deltaY}px))`;
         }
@@ -216,6 +222,10 @@ class CartManager {
     handleMouseUp(e) {
         if (!this.isDragging) return;
         this.isDragging = false;
+        
+        // 배경 스크롤 복원
+        document.body.style.overflow = '';
+        
         const deltaY = this.currentY - this.startY;
         
         if (Math.abs(deltaY) > 50) {
@@ -237,6 +247,10 @@ class CartManager {
     handleTouchEnd(e) {
         if (!this.isDragging) return;
         this.isDragging = false;
+        
+        // 배경 스크롤 복원
+        document.body.style.overflow = '';
+        
         const deltaY = this.currentY - this.startY;
         
         if (Math.abs(deltaY) > 50) {

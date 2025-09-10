@@ -233,6 +233,30 @@ body {
     z-index: 1000;
 }
 
+.bottom-sheet-handle {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 8px;
+    cursor: grab;
+    user-select: none;
+    background: white;
+    border-top: 1px solid #e9ecef;
+    position: relative;
+    z-index: 1001;
+}
+
+.bottom-sheet-handle:active {
+    cursor: grabbing;
+}
+
+.handle-bar {
+    width: 40px;
+    height: 4px;
+    background-color: #ddd;
+    border-radius: 2px;
+}
+
 .total-info {
     padding: 12px 16px 8px 16px;
     text-align: center;
@@ -305,27 +329,7 @@ body {
 }
 
 .cart-bottom-sheet.show {
-    transform: translateX(-50%) translateY(-90px);
-}
-
-.bottom-sheet-handle {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 12px;
-    cursor: grab;
-    user-select: none;
-}
-
-.bottom-sheet-handle:active {
-    cursor: grabbing;
-}
-
-.handle-bar {
-    width: 40px;
-    height: 4px;
-    background-color: #ddd;
-    border-radius: 2px;
+    transform: translateX(-50%) translateY(-100px);
 }
 
 .cart-items {
