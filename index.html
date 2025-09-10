@@ -78,6 +78,67 @@
         </div>
     </div>
 
+    <!-- Custom Filter Modal -->
+    <div class="custom-filter-overlay" id="customFilterOverlay">
+        <div class="custom-filter-modal" id="customFilterModal">
+            <div class="modal-header">
+                <h2>맞춤 조건 설정</h2>
+                <button class="close-btn" id="closeCustomFilter">
+                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                        <path d="M18 6L6 18M6 6L18 18" stroke="#000" stroke-width="2" stroke-linecap="round"/>
+                    </svg>
+                </button>
+            </div>
+            
+            <div class="modal-content">
+                <div class="question-section">
+                    <h3>가장 중요한 목표가 무엇인가요? <span class="required">*</span></h3>
+                    <div class="radio-group">
+                        <label class="radio-option">
+                            <input type="radio" name="goal" value="visibility" checked>
+                            <span class="radio-custom"></span>
+                            <span class="radio-text">많은 사람이 볼 수 있게 하고 싶어요.</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="goal" value="awareness">
+                            <span class="radio-custom"></span>
+                            <span class="radio-text">급하게 알바생을 채용해야 해요.</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="goal" value="professional">
+                            <span class="radio-custom"></span>
+                            <span class="radio-text">전문적인 알바생을 채용하고 싶어요.</span>
+                        </label>
+                        <label class="radio-option">
+                            <input type="radio" name="goal" value="careful">
+                            <span class="radio-custom"></span>
+                            <span class="radio-text">눈에 잘 띄게 하고 싶어요.</span>
+                        </label>
+                    </div>
+                </div>
+
+                <div class="question-section">
+                    <h3>투자 가능한 예산이 어느 정도인가요? <span class="required">*</span></h3>
+                    <div class="slider-container">
+                        <div class="slider-track">
+                            <div class="slider-progress" id="sliderProgress"></div>
+                            <div class="slider-thumb" id="sliderThumb"></div>
+                        </div>
+                        <div class="slider-labels">
+                            <span class="slider-label active" data-value="0">적어요</span>
+                            <span class="slider-label" data-value="1">보통<br><span class="sub-label">(10만원대)</span></span>
+                            <span class="slider-label" data-value="2">많아요</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-footer">
+                <button class="confirm-btn" id="confirmCustomFilter">설정 완료</button>
+            </div>
+        </div>
+    </div>
+
     <script src="data.js"></script>
     <script src="cart.js"></script>
     <script src="ui.js"></script>
