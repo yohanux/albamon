@@ -56,7 +56,7 @@ body {
 .product-list {
     display: flex;
     flex-direction: column;
-    gap: 8px;
+    gap: 12px;
 }
 
 /* 섹션 타이틀 */
@@ -212,15 +212,22 @@ body {
 }
 
 .quantity-dropdown {
-    padding: 6px 8px;
-    border: 1px solid #ddd;
+    padding: 10px 6px 10px 14px;
+    border: 1px solid #EAEAEA;
     border-radius: 4px;
     background: white;
     font-size: 14px;
-    color: #333;
+    font-weight: 400;
+    color: #1a1a1a;
     cursor: pointer;
     min-width: 60px;
-    position: relative;
+    appearance: none;
+    -webkit-appearance: none;
+    background-image: url('./icon/dropdownsmall.svg');
+    background-repeat: no-repeat;
+    background-position: right 6px center;
+    background-size: 16px 16px;
+    padding-right: 26px;
 }
 
 .quantity-dropdown:focus {
@@ -228,19 +235,8 @@ body {
     border-color: #FF501B;
 }
 
-.quantity-dropdown:after {
-    content: "▼";
-    position: absolute;
-    right: 8px;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 10px;
-    color: #999;
-    pointer-events: none;
-}
-
 .quantity-amount {
-    font-size: 16px;
+    font-size: 18px;
     font-weight: 600;
     color: #000000;
     text-align: right;
@@ -534,10 +530,11 @@ body {
     .quantity-dropdown {
         min-width: 55px;
         font-size: 14px;
-        padding: 5px 6px;
+        padding: 10px 6px 10px 14px;
+        padding-right: 26px;
     }
     
     .quantity-amount {
-        font-size: 13px;
+        font-size: 15px;
     }
 }
